@@ -22,12 +22,14 @@ const mapStateToProps = createSelector(
 );
 
 const propTypes = {
+  block: PropTypes.string,
   description: PropTypes.string,
   guideUrl: PropTypes.string,
   instructions: PropTypes.string,
   isChallengeCompleted: PropTypes.bool,
   section: PropTypes.string,
   showToolPanel: PropTypes.bool,
+  superBlock: PropTypes.string,
   tests: PropTypes.arrayOf(PropTypes.object),
   title: PropTypes.string,
   videoUrl: PropTypes.string
@@ -37,7 +39,9 @@ export class SidePanel extends Component {
   componentDidMount() {
     const MathJax = global.MathJax;
     const mathJaxMountPoint = document.querySelector('#mathjax');
-    const rosettaCodeChallenge = this.props.section === 'rosetta-code';
+    const mathJaxChallenge =
+      this.props.section === 'rosetta-code' ||
+      this.props.section === 'project-euler';
     if (MathJax) {
       // Configure MathJax when it's loaded and
       // users navigate from another challenge
@@ -45,21 +49,23 @@ export class SidePanel extends Component {
         tex2jax: {
           inlineMath: [['$', '$'], ['\\(', '\\)']],
           processEscapes: true,
-          processClass: 'rosetta-code'
+          processClass: 'rosetta-code|project-euler'
         }
       });
       MathJax.Hub.Queue([
         'Typeset',
         MathJax.Hub,
-        document.querySelector('.rosetta-code')
+        document.querySelector('.rosetta-code'),
+        document.querySelector('.project-euler')
       ]);
-    } else if (!mathJaxMountPoint && rosettaCodeChallenge) {
+    } else if (!mathJaxMountPoint && mathJaxChallenge) {
       mathJaxScriptLoader();
     }
   }
 
   render() {
     const {
+      block,
       title,
       description,
       instructions,
@@ -68,12 +74,17 @@ export class SidePanel extends Component {
       tests,
       section,
       showToolPanel,
+      superBlock,
       videoUrl
     } = this.props;
     return (
       <div className='instructions-panel' role='complementary' tabIndex='-1'>
         <div>
-          <ChallengeTitle isCompleted={isChallengeCompleted}>
+          <ChallengeTitle
+            block={block}
+            isCompleted={isChallengeCompleted}
+            superBlock={superBlock}
+          >
             {title}
           </ChallengeTitle>
           <ChallengeDescription

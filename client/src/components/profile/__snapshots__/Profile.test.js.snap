@@ -20,11 +20,15 @@ exports[`<Profile/> renders correctly 1`] = `
         <div
           class="avatar-container col-xs-12"
         >
-          <img
-            alt="string's avatar"
-            class="avatar img-responsive"
-            src="string"
-          />
+          <div
+            class="avatar-container default-border"
+          >
+            <img
+              alt="profile.avatar"
+              class="avatar img-responsive"
+              src="string"
+            />
+          </div>
         </div>
       </div>
       <div
@@ -34,7 +38,7 @@ exports[`<Profile/> renders correctly 1`] = `
           class="text-center social-media-icons col-sm-6 col-sm-offset-3"
         >
           <a
-            aria-label="Link to string's LinkedIn"
+            aria-label="aria.linkedin"
             href="string"
             rel="noopener noreferrer"
             target="_blank"
@@ -56,7 +60,7 @@ exports[`<Profile/> renders correctly 1`] = `
             </svg>
           </a>
           <a
-            aria-label="Link to string's Github"
+            aria-label="aria.github"
             href="string"
             rel="noopener noreferrer"
             target="_blank"
@@ -78,7 +82,7 @@ exports[`<Profile/> renders correctly 1`] = `
             </svg>
           </a>
           <a
-            aria-label="Link to string's website"
+            aria-label="aria.website"
             href="string"
             rel="noopener noreferrer"
             target="_blank"
@@ -100,7 +104,7 @@ exports[`<Profile/> renders correctly 1`] = `
             </svg>
           </a>
           <a
-            aria-label="Link to string's Twitter"
+            aria-label="aria.twitter"
             href="string"
             rel="noopener noreferrer"
             target="_blank"
@@ -142,7 +146,7 @@ exports[`<Profile/> renders correctly 1`] = `
       <a
         href="/user/string/report-user"
       >
-        Report This User
+        buttons.flag-user
       </a>
     </div>
     <div
